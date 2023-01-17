@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+</head>
+
+<body>
+    <h1>Javascript Practice</h1>
+
+    <script>
+        "use strict";
+        // Promise Practice.
+        function prom(complete) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    if (complete) {
+                        resolve("ajax working...");
+                    } else {
+                        reject("ajax not working...");
+                    }
+                }, 3000);
+            });
+        }
+        let onful = (result) => {
+            console.log(result);
+        };
+        let faild = (faild) => {
+            console.log(result);
+        };
+        prom(true).then(onful).catch(faild);
+
+        //AJAX Test.
+        let aj = new XMLHttpRequest();
+        aj.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        }
+        aj.open("GET", "text.txt", true);
+        aj.send();
+
+
+        //Fetch Method
+        fetch("text.txt")
+            .then((response) => response.text())
+            .then((data) => console.log(data))
+            .catch((error) => console.log("faild"));
+
+
+        //Asunc & Await
+        async function test(of) {
+            console.log("i am first");
+            await console.log("i am second");
+            console.log("hello i am asunc function");
+            console.log("i am last");
+            return "hello";
+        }
+        test(true).then((result) => {
+            console.log(result);
+        });
+        console.log("await method");
+
+        //Symbol
+        let x = "hell0";
+        let u = "hell0";
+        console.log(x === u);
+
+        let d = Symbol("hello");
+        let e = Symbol("hello");
+        console.log(d === e);
+
+    </script>
+
+    <script>
+        setTimeout(() => {
+            let ok = confirm(" You Want To Redirect Another Page");
+            if (ok) {
+                console.log("yes");
+            } else {
+                console.log("no");
+            }
+        }, 5000);
+    </script>
+</body>
+
+</html>
